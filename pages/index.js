@@ -1,27 +1,24 @@
-import { useState } from "react";
+import React from "react";
+import { navLinks } from "./navData";
+import Link from "next/link";
 
-function Home() {
-    return (
-        <div>
-            <h1>Página Inicial</h1>
-            <Contador />
-        </div>
-    )
+export default function Header() {
+  return (
+    <header>
+      <div className="brand">
+        <h3>Example</h3>
+      </div>
+      <nav>
+        {navLinks.map((link, index) => {
+          return (
+            <ul>
+              <Link href={link.path}>
+                <li key={index}>{link.name}</li>
+              </Link>
+            </ul>
+          );
+        })}
+      </nav>
+    </header>
+  );
 }
-
-function Contador(){
-    const [contador, setContador] = useState(1);
-
-    function adicionarContador() {
-        setContador(contador + 1);
-    }
-
-    return (
-        <div>
-            <div>{contador}</div>
-            <button onClick={adicionarContador}>Adiciona</button>
-        </div>
-    )
-}
-
-export default Home;
